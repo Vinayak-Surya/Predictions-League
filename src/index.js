@@ -7,6 +7,7 @@ import Login from "./Pages/Login";
 import Rules from "./Pages/Rules";
 import Profile from "./Pages/Profile";
 import Predictions from "./Pages/Predictions";
+import SignUp from "./Pages/SignUp";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
@@ -18,6 +19,7 @@ ReactDOM.render(
       <Route path="login" element={<Login />} exact />
       <Route path="rules" element={<Rules />} exact />
       <Route path="predictions" element={<Predictions />} exact />
+      <Route path="signup" element={<SignUp />} exact />
       <Route
         path="*"
         element={
