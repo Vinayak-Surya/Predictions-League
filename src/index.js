@@ -7,14 +7,12 @@ import Login from "./Pages/Login";
 import Rules from "./Pages/Rules";
 import Profile from "./Pages/Profile";
 import Predictions from "./Pages/Predictions";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
-      {/* <Route path="/" element={<App />} />
-      <Route path="home" element={<Home />} />
-      <Route path="about" element={<About />} />
-      <Route path="addUser" element={<AddDonor />} /> */}
       <Route path="/" element={<Home />} exact />
       <Route path="profile" element={<Profile />} exact />
       <Route path="login" element={<Login />} exact />
