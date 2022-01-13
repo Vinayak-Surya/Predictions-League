@@ -6,7 +6,10 @@ const cors = require("cors");
 
 const port = 7800;
 
-app.use(bodyParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(cors());
 
 var pool = mysql.createPool({
