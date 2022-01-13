@@ -15,19 +15,19 @@ export default function Navbar() {
                 <ul className="navbar-nav ms-auto">
                     <li className="nav-item mr-3">
                     {/* <a className="nav-link active" aria-current="page" href="rules.html">Rules</a> */}
-                    <Link className="text-light" to="/predictions">Predictions</Link>
+                    <Link style={{ textDecoration: 'none' }} className="text-light" to="/predictions">Predictions</Link>
                     </li>
                     <li className="nav-item mr-3">
                     {/* <a className="nav-link active" aria-current="page" href="rules.html">Rules</a> */}
-                    <Link className="text-light" to="/profile">Profile</Link>
+                    <Link style={{ textDecoration: 'none' }} className="text-light" to="/profile">Profile</Link>
                     </li>
                     <li className="nav-item mr-3">
                     {/* <a className="nav-link active" aria-current="page" href="rules.html">Rules</a> */}
-                    <Link className="text-light" to="/rules">Rules</Link>
+                    <Link style={{ textDecoration: 'none' }} className="text-light" to="/rules">Rules</Link>
                     </li>
                     <li className="nav-item">
                     {/* <a className="nav-link" href="login.html">Login</a> */}
-                    <Link className="text-light" to="/login">Login</Link>
+                    <Link style={{ textDecoration: 'none' }} className="text-light" to="/login">Login</Link>
                     </li>
                     </ul>
                 </div>

@@ -9,7 +9,7 @@ export default function Predictions() {
                 <Navbar />
                 <section className="text-light">
                     <section>
-                        <div className="main my-4">
+                        <div className="main my-3">
                             <div>
                                 <h1 className="text-center display-3">Prediction</h1>
                                 <hr className="w-50 mx-auto"/>
