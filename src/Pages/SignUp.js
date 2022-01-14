@@ -8,9 +8,11 @@ export default function Login() {
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [dob, setDOB] = useState('')
   const [team, setTeam] = useState('')
   const [password, setPassword] = useState('')
   const [username, setUserName] = useState('')
+
 
 
   async function postData() {
@@ -19,7 +21,7 @@ export default function Login() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ name, email, password, team, username })
+      body: JSON.stringify({ name, email, dob, password, team, username })
     });
     return response.json()
   }
@@ -46,21 +48,27 @@ export default function Login() {
                 </div>
                 <div>
                   <label for="email" className="form-label">Email</label>
-                  <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" id="email" placeholder="Password" />
+                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" id="email" placeholder="Email" />
+                </div>
+                <div>
+                  <label for="dob" className="form-label">Date Of Birth</label>
+                  <input type="date" value={dob} onChange={(e) => setDOB(e.target.value)} className="form-control" id="email" placeholder="DOB" />
                 </div>
                 <div>
                   <label for="ft" className="form-label">Favourite Team</label>
-                  <input type="text" value={team} onChange={(e) => setTeam(e.target.value)} className="form-control" id="ft" placeholder="Password" />
+                  <input type="text" value={team} onChange={(e) => setTeam(e.target.value)} className="form-control" id="ft" placeholder="Team" />
                 </div>
-                <label for="un" className="form-label">Username</label>
-                <input type="text" value={username} onChange={(e) => setUserName(e.target.value)} className="form-control" id="un" placeholder="Username" />
-              </div>
-              <div>
-                <label for="pw" className="form-label">Password</label>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" id="pw" placeholder="Password" />
-              </div>
-              <div className=" my-4">
-                <button type="submit" onClick={handleClick} className="btn btn-primary w-100">Sign up</button>
+                <div>
+                  <label for="un" className="form-label">Username</label>
+                  <input type="text" value={username} onChange={(e) => setUserName(e.target.value)} className="form-control" id="un" placeholder="Username" />
+                </div>
+                <div>
+                  <label for="pw" className="form-label">Password</label>
+                  <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" id="pw" placeholder="Password" />
+                </div>
+                <div className=" my-4">
+                  <button type="submit" onClick={handleClick} className="btn btn-primary w-100">Sign up</button>
+                </div>
               </div>
             </form>
           </div>

@@ -39,11 +39,12 @@ app.post("/addUser", function (req, res) {
         req.body.username,
         req.body.email,
         req.body.password,
-        req.body.team
+        req.body.team,
+        req.body.dob
       ],
     ];
     connection.query(
-      "INSERT INTO userdb (name,username,email,password,team) VALUES ?",
+      "INSERT INTO userdb (name,username,email,password,team,dob) VALUES ?",
       [val],
       function (error, results, fields) {
         connection.release();
@@ -51,8 +52,8 @@ app.post("/addUser", function (req, res) {
           console.log(error);
           res.status(500).send(error);
         }
-        // res.send(results);
-        res.send({ message: "Succesfully Added to DB" })
+        res.send(results);
+        //res.send({ message: "Succesfully Added to DB" })
       }
     );
   });
