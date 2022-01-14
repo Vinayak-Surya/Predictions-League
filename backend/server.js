@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const port = 7800;
 
@@ -16,7 +17,7 @@ var pool = mysql.createPool({
   host: "localhost",
   user: "root",
   password: "",
-  database: "web_tech_proj",
+  database: "prediction league",
 });
 
 pool.getConnection(function (err) {
@@ -25,7 +26,7 @@ pool.getConnection(function (err) {
 });
 
 app.post("/addUser", function (req, res) {
-  console.log("---inside post");
+  console.log("---inside post", req.body);
   pool.getConnection(function (err, connection) {
     if (err) {
       console.log("connection issues");
@@ -34,15 +35,15 @@ app.post("/addUser", function (req, res) {
     console.log("-------" + req.body);
     let val = [
       [
-        req.body.fname,
-        req.body.lname,
+        req.body.name,
+        req.body.username,
         req.body.email,
-        req.body.mobile,
-        req.body.bgroup,
+        req.body.password,
+        req.body.team
       ],
     ];
     connection.query(
-      "INSERT INTO donors (fname,lname,email,mobile,bgroup) VALUES ?",
+      "INSERT INTO userdb (name,username,email,password,team) VALUES ?",
       [val],
       function (error, results, fields) {
         connection.release();
@@ -50,7 +51,8 @@ app.post("/addUser", function (req, res) {
           console.log(error);
           res.status(500).send(error);
         }
-        res.send(results);
+        // res.send(results);
+        res.send({ message: "Succesfully Added to DB" })
       }
     );
   });
