@@ -17,7 +17,7 @@ var pool = mysql.createPool({
   host: "localhost",
   user: "root",
   password: "",
-  database: "prediction league",
+  database: "prediction_league",
 });
 
 pool.getConnection(function (err) {
@@ -50,7 +50,8 @@ app.post("/addUser", function (req, res) {
         connection.release();
         if (error) {
           console.log(error);
-          res.status(500).send(error);
+          // res.status(500).send(error);
+          res.status(404).send({message: "Username already exists!"});
         }
         res.send(results);
         //res.send({ message: "Succesfully Added to DB" })
