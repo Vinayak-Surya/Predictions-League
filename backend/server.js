@@ -17,7 +17,7 @@ var pool = mysql.createPool({
   host: "localhost",
   user: "root",
   password: "",
-  database: "prediction_league",
+  database: "predictions_league",
 });
 
 pool.getConnection(function (err) {
@@ -44,14 +44,14 @@ app.post("/addUser", function (req, res) {
       ],
     ];
     connection.query(
-      "INSERT INTO userdb (name,username,email,password,team,dob) VALUES ?",
+      "INSERT INTO users (name,username,email,password,team,dob) VALUES ?",
       [val],
       function (error, results, fields) {
         connection.release();
         if (error) {
           console.log(error);
           // res.status(500).send(error);
-          res.status(404).send({message: "Username already exists!"});
+          res.status(500).send({message: "Username already exists!"});
         }
         res.send(results);
         //res.send({ message: "Succesfully Added to DB" })
@@ -60,4 +60,4 @@ app.post("/addUser", function (req, res) {
   });
 });
 
-app.listen(port, () => console.log(`example app listening on port ${port}!`));
+app.listen(port, () => console.log(`Server listening on port ${port}.....`));

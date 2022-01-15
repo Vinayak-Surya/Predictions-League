@@ -42,9 +42,9 @@
 }
 
 @media (min-width: 768px) { 
-    #d1{height:100%;}
-}
-
-@media (min-width: 992px) { 
     #d1{height:100vh;}
 }
+
+/* @media (min-width: 992px) { 
+    #d1{height:100vh;}
+} */

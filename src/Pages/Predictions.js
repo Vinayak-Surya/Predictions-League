@@ -3,8 +3,9 @@ import Navbar from "../Components/Navbar";
 
 export default function Predictions() {
     return (
+        <div id="d1">
         <div id="bg">
-            <div style={{ backdropFilter: "blur(3px)" }}>
+            <div style={{ backdropFilter: "blur(3px)" }} id="d1">
                 <Navbar />
                 <section className="text-light">
                     <section>
@@ -67,5 +68,6 @@ export default function Predictions() {
                 </section>
             </div>
         </div>
+    </div>
     )
 }
