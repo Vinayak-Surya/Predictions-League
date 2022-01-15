@@ -20,3 +20,31 @@
     width: 100%;
     max-width:350px;
 }
+#bg{
+  background: url(../Images/pre.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100%;
+  width: 100%;
+}
+#form1{
+    width: 100%;
+    max-width:600px;
+}
+
+#ft_placeholder{
+    color:#999;
+}
+@media (min-width: 576px) {
+    #d1{height:100%;}
+}
+
+@media (min-width: 768px) { 
+    #d1{height:100%;}
+}
+
+@media (min-width: 992px) { 
+    #d1{height:100vh;}
+}
