@@ -10,6 +10,7 @@ import Predictions from "./Pages/Predictions";
 import SignUp from "./Pages/SignUp";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.render(
   <BrowserRouter>

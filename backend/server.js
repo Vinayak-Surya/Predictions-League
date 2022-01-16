@@ -26,13 +26,13 @@ pool.getConnection(function (err) {
 });
 
 app.post("/addUser", function (req, res) {
-  console.log("---inside post", req.body);
+  // console.log("---inside post", req.body);
   pool.getConnection(function (err, connection) {
     if (err) {
       console.log("connection issues");
       res.status(500).send("DB connection error");
     }
-    console.log("-------" + req.body);
+    // console.log("-------" + req.body);
     let val = [
       [
         req.body.name,
@@ -51,12 +51,44 @@ app.post("/addUser", function (req, res) {
         if (error) {
           console.log(error);
           // res.status(500).send(error);
-          res.status(500).send({message: "Username already exists!"});
+          res.status(500).send({errorMessage: "Username already exists!"});
         }
         res.send(results);
         //res.send({ message: "Succesfully Added to DB" })
       }
     );
+  });
+});
+
+app.post("/api/login", (req, res) => {
+  pool.getConnection((err, connection) => {
+    console.log("inside api login")
+    if (err) {
+      console.log("connection issues");
+      res.status(500).send("DB connection error");
+    }
+    else {
+      console.log(req.body);
+      let username = req.body.username;
+      let password = req.body.password;
+      connection.query(
+        "SELECT * from users where username=? and password=?",
+        [username, password],
+        (error, results, fields) => {
+          connection.release();
+          if (error) {
+            console.log(error);
+            res.status(500).send(error);
+          }
+          // console.log(results);
+          if(results.length != 0) {
+            res.send({auth: true});
+          } else {
+            res.send({auth: false});
+          }
+        }
+      );
+    }
   });
 });
 

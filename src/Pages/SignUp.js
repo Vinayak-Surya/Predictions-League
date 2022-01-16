@@ -3,7 +3,6 @@ import Navbar from "../Components/Navbar";
 import Logo from "../Images/logo.png";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
 
@@ -15,8 +14,6 @@ export default function Login() {
   const [password, setPassword] = useState('')
   const [username, setUserName] = useState('')
 
-
-
   async function postData() {
     const response = await fetch("http://localhost:7800/addUser", {
       method: 'POST',
@@ -27,15 +24,15 @@ export default function Login() {
     });
     return response.json()
   }
-
+  
   const handleClick = (e) => {
     e.preventDefault()
     console.log("Button Clicked")
     postData()
       .then((data) => {
         console.log(data);
-        if (data.message) {
-          toast.error(data.message, {
+        if(data.message) {
+          toast.error(data.errorMessage, {
             position: "top-center",
             autoClose: 2000,
             hideProgressBar: false,
@@ -44,16 +41,18 @@ export default function Login() {
           });
         }
         else {
-          toast.success("User created! Redirecting to login....", {
+          toast.success("User created!", {
             position: "top-center",
             autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
           });
-          setInterval(() => {
-            navigate('/login');
-          }, 2500);
+          // window.location.reload(false);
+          // const interval = setInterval(() => {
+          //   navigate('/login');
+          // }, 2500);
+          // clearInterval(interval);
         }
       })
   }
