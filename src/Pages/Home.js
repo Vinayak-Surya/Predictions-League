@@ -5,6 +5,7 @@ import RealMadrid from "../Images/f.jpg";
 import Barca from "../Images/s.jpeg";
 import Atletico from "../Images/ts.jpg";
 import Navbar from "../Components/Navbar";
+import Video from "../Images/Video.mp4";
 
 export default function Home() {
     return (
@@ -16,23 +17,29 @@ export default function Home() {
               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
             </div>
-            <div className="carousel-inner" data-bs-interval="5000">
-              <div className="carousel-item active">
+            <div className="carousel-inner">
+              <div className="carousel-item active" data-bs-interval="13000">
+                <video className="img-fluid d-block" autoplay="autoplay" loop muted>
+                  <source src={Video} type="video/mp4" />
+                </video>
+                </div>
+              <div className="carousel-item" data-bs-interval="13000">
                 <img src={RealMadrid} className="d-block" alt="..." />
                 <div className="carousel-caption d-md-block">
                   <h3>Real Madrid</h3>
                   <h4>Real Madrid winning LaLiga</h4>
                 </div>
               </div>
-              <div className="carousel-item" data-bs-interval="5000">
+              <div className="carousel-item" data-bs-interval="13000">
                 <img src={Barca} className="d-block" alt="..." />
                 <div className="carousel-caption d-md-block">
                   <h3>Barcelona</h3>
                   <h4>Barcelona winning LaLiga</h4>
                 </div>
               </div>
-              <div className="carousel-item" data-bs-interval="5000">
+              <div className="carousel-item" data-bs-interval="13000">
                 <img src={Atletico} className="d-block" alt="..." />
                 <div className="carousel-caption d-md-block">
                   <h4>Atletico Madrid</h4>

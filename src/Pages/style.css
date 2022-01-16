@@ -9,7 +9,12 @@
     height: 80%;
     max-height: 93vh;
 }
-
+.carousel-inner video{
+    width: 100%;
+    height: 80%;
+    max-height: 93vh;
+    object-fit: cover;
+}
 .carousel-caption{
     -webkit-text-stroke: 1px black;
     font-family: Arial, Helvetica, sans-serif;
