@@ -4,8 +4,8 @@ import BG from "../Images/pre.jpg";
 
 export default function Rules() {
     return (
-        <div style={{backgroundImage: `url(${BG})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", height: "100vh"}}>
-            <div style={{backdropFilter: "blur(3px)", height: "100vh"}}>
+        <div id="bg">
+            <div style={{ height: "100vh" }}>
                 <Navbar />
                 <section className="text-light">
                     <div className="main my-4">

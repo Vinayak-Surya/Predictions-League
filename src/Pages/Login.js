@@ -5,9 +5,9 @@ import Logo from "../Images/logo.png";
 
 export default function Login() {
   return (
-    <div style={{height: "100vh"}}>
+    <div style={{ height: "100vh" }}>
       <div id="bg">
-        <div style={{ backdropFilter: "blur(3px)", height: "100vh" }}>
+        <div style={{ height: "100vh" }}>
           <Navbar />
           <section className="mt-3 pt-3 mx-auto text-light">
             <div className="container ms-auto" id="form">
@@ -24,7 +24,7 @@ export default function Login() {
                   <input type="password" className="form-control" id="pw" placeholder="Password" required />
                 </div>
                 <div className=" my-4">
-                  <button type="submit" className="btn btn-primary w-100">Login</button>
+                  <button type="submit" className="btn btn-primary w-100 ">Login</button>
                 </div>
               </form>
               <div className="main my-3">
