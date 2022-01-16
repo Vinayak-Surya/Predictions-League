@@ -1,11 +1,12 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
+import PredictionBox from "../Components/PredictionBox";
 
 export default function Predictions() {
     return (
         <div id="d1">
             <div id="bg1">
-                <div /*style={{ backdropFilter: "blur(3px)" }}*/ id="d1">
+                <div>
                     <Navbar />
                     <section className="text-light">
                         <section>
@@ -16,55 +17,25 @@ export default function Predictions() {
                                 </div>
                             </div>
                         </section>
-                        <section className="mt-1 mx-auto">
-                            <div className="container ms-auto" id="form">
-                                <form>
-                                    <div className="d-sm-flex my-1">
-                                        <label for="un" className="form-label mx-4 my-1">Prediction</label>
-                                        <input type="text" className="form-control" id="un" placeholder="Prediction" />
-                                    </div>
-                                    <div className="d-sm-flex my-1">
-                                        <label for="un" className="form-label mx-4 my-1">Prediction</label>
-                                        <input type="text" className="form-control" id="un" placeholder="Prediction" />
-                                    </div>
-                                    <div className="d-sm-flex my-1">
-                                        <label for="un" className="form-label mx-4 my-1">Prediction</label>
-                                        <input type="text" className="form-control" id="un" placeholder="Prediction" />
-                                    </div>
-                                    <div className="d-sm-flex my-1">
-                                        <label for="un" className="form-label mx-4 my-1">Prediction</label>
-                                        <input type="text" className="form-control" id="un" placeholder="Prediction" />
-                                    </div>
-                                    <div className="d-sm-flex my-1">
-                                        <label for="un" className="form-label mx-4 my-1">Prediction</label>
-                                        <input type="text" className="form-control" id="un" placeholder="Prediction" />
-                                    </div>
-                                    <div className="d-sm-flex my-1">
-                                        <label for="un" className="form-label mx-4 my-1">Prediction</label>
-                                        <input type="text" className="form-control" id="un" placeholder="Prediction" />
-                                    </div>
-                                    <div className="d-sm-flex my-1">
-                                        <label for="un" className="form-label mx-4 my-1">Prediction</label>
-                                        <input type="text" className="form-control" id="un" placeholder="Prediction" />
-                                    </div>
-                                    <div className="d-sm-flex my-1">
-                                        <label for="un" className="form-label mx-4 my-1">Prediction</label>
-                                        <input type="text" className="form-control" id="un" placeholder="Prediction" />
-                                    </div>
-                                    <div className="d-sm-flex my-1">
-                                        <label for="un" className="form-label mx-4 my-1">Prediction</label>
-                                        <input type="text" className="form-control" id="un" placeholder="Prediction" />
-                                    </div>
-                                    <div className="d-sm-flex my-1">
-                                        <label for="un" className="form-label mx-4 my-1">Prediction</label>
-                                        <input type="text" className="form-control" id="un" placeholder="Prediction" />
-                                    </div>
+                        <div className=" d-flex justify-content-center">
+                            <div>
+                                <form style={{width: "275px"}}>
+                                        <PredictionBox />   
+                                        <PredictionBox />   
+                                        <PredictionBox />
+                                        <PredictionBox />
+                                        <PredictionBox />
+                                        <PredictionBox />
+                                        <PredictionBox />
+                                        <PredictionBox />
+                                        <PredictionBox />
+                                        <PredictionBox />
                                     <div className=" mt-4">
                                         <button type="submit" className="btn btn-success w-100">Confirm</button>
                                     </div>
                                 </form>
                             </div>
-                        </section>
+                        </div>
                     </section>
                 </div>
             </div>
