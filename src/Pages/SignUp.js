@@ -31,7 +31,7 @@ export default function Login() {
     postData()
       .then((data) => {
         console.log(data);
-        if(data.message) {
+        if(data.errorMessage) {
           toast.error(data.errorMessage, {
             position: "top-center",
             autoClose: 2000,

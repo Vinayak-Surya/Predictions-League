@@ -68,9 +68,10 @@ app.post("/api/login", (req, res) => {
       res.status(500).send("DB connection error");
     }
     else {
-      console.log(req.body);
+      // console.log(req.body);
       let username = req.body.username;
       let password = req.body.password;
+      console.log(username, '+', password);
       connection.query(
         "SELECT * from users where username=? and password=?",
         [username, password],
@@ -80,12 +81,38 @@ app.post("/api/login", (req, res) => {
             console.log(error);
             res.status(500).send(error);
           }
-          // console.log(results);
+          console.log(results);
           if(results.length != 0) {
             res.send({auth: true});
           } else {
             res.send({auth: false});
           }
+        }
+      );
+    }
+  });
+});
+
+app.get("/api/profile/:username", (req, res) => {
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.log("connection issues");
+      res.status(500).send("DB connection error");
+    }
+    else {
+      let username = req.params["username"];
+      console.log(username);
+      connection.query(
+        "SELECT name, email, dob, total_score, team from users where username=?",
+        [username],
+        (error, results, fields) => {
+          connection.release();
+          if (error) {
+            console.log(error);
+            res.status(500).send(error);
+          }
+          console.log(results);
+          res.send(results);
         }
       );
     }
