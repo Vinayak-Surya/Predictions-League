@@ -5,6 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Rules from "./Pages/Rules";
+import Admin from "./Pages/Admin";
 import Profile from "./Pages/Profile";
 import Predictions from "./Pages/Predictions";
 import SignUp from "./Pages/SignUp";
@@ -21,6 +22,7 @@ ReactDOM.render(
       <Route path="rules" element={<Rules />} exact />
       <Route path="predictions" element={<Predictions />} exact />
       <Route path="signup" element={<SignUp />} exact />
+      <Route path="admin" element={<Admin />} exact />
       <Route
         path="*"
         element={

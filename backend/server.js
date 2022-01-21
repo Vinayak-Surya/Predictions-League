@@ -11,6 +11,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(express.json({limit: '150mb'}));
+app.use(express.urlencoded({limit: '150mb'}));
 app.use(cors());
 
 var pool = mysql.createPool({
@@ -118,5 +120,32 @@ app.get("/api/profile/:username", (req, res) => {
     }
   });
 });
+
+app.post("/api/fixtures", (req, res) => {
+
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.log("connection issues");
+      res.status(500).send("DB connection error");
+    }
+    else {
+      console.log(req.body.matches,req.body.matches.length);
+      connection.query(
+        "Insert into results (gameweek, match_id, home_team, away_team, h_goals, a_goals, goal_diff, status) values ?",
+        [req.body.matches],
+        (error, results, fields) => {
+          connection.release();
+          if (error) {
+            console.log(error);
+            res.status(500).send(error);
+          }
+          console.log(results);
+          res.send(results);
+        }
+      )
+      //res.send(200).json({matchday:c})
+    }
+})
+})  
 
 app.listen(port, () => console.log(`Server listening on port ${port}.....`));
