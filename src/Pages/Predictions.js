@@ -5,7 +5,7 @@ import PredictionBox from "../Components/PredictionBox";
 export default function Predictions() {
     return (
         <div id="d1">
-            <div id="bg1">
+            <div id="bg">
                 <div>
                     <Navbar />
                     <section className="text-light">

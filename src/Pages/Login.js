@@ -54,7 +54,7 @@ export default function Login() {
           <Navbar />
           <section className="mt-3 pt-3 mx-auto text-light">
             <ToastContainer />
-            <div className="container ms-auto" id="form">
+            <div className="container mt-3 pt-3 ms-auto" id="form">
               <form>
                 <div>
                   <div className="text-center wt-5">
