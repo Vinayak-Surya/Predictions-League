@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
 import PredictionBox from "../Components/PredictionBox";
+import axios from "axios";
 
 export default function Predictions() {
-    return (
 
-        // get request to db to get fixtures of given gw. store the results in an array inside useState. map through the array
-        // and you have to pass the name of the home team and away team and match id to the component.
-        // inside the component you'll get the prediction and you have to do a post req to backend and insert into predictions table
-        // username is in sessionstorage
+    const [games, setGames] = useState([]);  
+
+    // add date to results table, compare user date and date in table to get closest matchday and put a useeffect on load to do this 
+    // run below useeffect when matchday gets set
+
+    // add gameweek to predictions table
+
+    useEffect(() => {
+        axios
+            .get("http://localhost:7800/api/getFixtures", {
+                params: {
+                    matchday: 2,
+                }
+            })
+            .then((res) => {
+                console.log(res);
+                setGames(res.data);
+            })
+    }, []);
+
+    return (
 
         <div id="d1">
             <div id="bg">
@@ -26,22 +43,9 @@ export default function Predictions() {
                         <div className=" d-flex justify-content-center">
                             <div>
                                 <form style={{width: "850px"}}>
-                                       {/* {values.map(val => (
-                                           <PredictionBox homeTeam={val.homeTeam}></PredictionBox>
-                                       ))} */}
-                                        <PredictionBox />  
-                                        <PredictionBox />   
-                                        <PredictionBox />
-                                        <PredictionBox />
-                                        <PredictionBox />
-                                        <PredictionBox />
-                                        <PredictionBox />
-                                        <PredictionBox />
-                                        <PredictionBox />
-                                        <PredictionBox />
-                                    {/* <div className=" mt-4">
-                                        <button type="submit"  className="btn btn-success w-100">Confirm</button>
-                                    </div> */}
+                                    {games.map((game, idx) => (
+                                        <PredictionBox key={idx} matchId={game.match_id} homeTeam={game.home_team} awayTeam={game.away_team}></PredictionBox>
+                                    ))}
                                 </form>
                             </div>
                         </div>

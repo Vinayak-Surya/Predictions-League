@@ -122,7 +122,6 @@ app.get("/api/profile/:username", (req, res) => {
 });
 
 app.post("/api/fixtures", (req, res) => {
-
   pool.getConnection((err, connection) => {
     if (err) {
       console.log("connection issues");
@@ -147,5 +146,93 @@ app.post("/api/fixtures", (req, res) => {
     }
 })
 })  
+
+app.get("/api/getFixtures", (req, res) => {
+  pool.getConnection((err, connection) => {
+    if(err) {
+      console.log("Connection issues");
+      res.status(500).send("DB connection error");
+    }
+    else {
+      // console.log(req.query.matchday);
+      let gw = req.query.matchday;
+      connection.query(
+        "Select match_id, home_team, away_team from results where gameweek=?",
+        [gw],
+        (error, results, fields) => {
+          connection.release();
+          if (error) {
+            console.log(error);
+            res.status(500).send(error);
+          }
+          // console.log(results);
+          res.send(results);
+        }
+      )
+    }
+  })
+})
+
+app.post("/api/addPrediction", (req, res) => {
+  pool.getConnection((err, connection) => {
+    if(err) {
+      console.log("Connection issues");
+      res.status(500).send("DB connection error");
+    }
+    else {
+      let val = [
+        [
+          req.body.homeGoals,
+          req.body.awayGoals,
+          req.body.goalDiff,
+          req.body.matchId,
+          req.body.username
+        ]
+      ];
+      let query = "insert into predictions (h_goals, a_goals, goal_diff, match_id, username) values ?";
+      connection.query(
+        "select * from predictions where match_id=? and username=?",
+        [req.body.matchId, req.body.username],
+        (err, results, fields) => {
+          // console.log(results);
+          if(results.length) {
+            query = "update predictions set h_goals=?, a_goals=?, goal_diff=? where match_id=? and username=?";
+            connection.query(
+              query,
+              [req.body.homeGoals,
+              req.body.awayGoals,
+              req.body.goalDiff,
+              req.body.matchId,
+              req.body.username],
+              (error, results, fields) => {
+                if (error) {
+                  console.log(error);
+                  res.status(500).send(error);
+                }
+                console.log(results);
+                res.send(results);
+              }
+            )
+          }
+          else {
+            connection.query(
+              query,
+              [val],
+              (error, results, fields) => {
+                connection.release();
+                if (error) {
+                  console.log(error);
+                  res.status(500).send(error);
+                }
+                console.log(results);
+                res.send(results);
+              }
+            )
+          }
+        }
+      )
+    }
+  })
+})
 
 app.listen(port, () => console.log(`Server listening on port ${port}.....`));
