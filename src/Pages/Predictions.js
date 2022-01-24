@@ -1,24 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Navbar from "../Components/Navbar";
 import PredictionBox from "../Components/PredictionBox";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { MatchDayContext } from "../MatchDayContext";
 
 export default function Predictions() {
 
     const [games, setGames] = useState([]);
     const navigate = useNavigate();
+    const {matchday, setMatchday} = useContext(MatchDayContext);
 
     // add date to results table, compare user date and date in table to get closest matchday and put a useeffect on load to do this 
     // run below useeffect when matchday gets set
 
-    // add gameweek to predictions table
 
     useEffect(() => {
         axios
             .get("http://localhost:7800/api/getFixtures", {
                 params: {
-                    matchday: 2,
+                    matchday: matchday,
                 }
             })
             .then((res) => {

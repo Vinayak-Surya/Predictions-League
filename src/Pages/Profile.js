@@ -66,43 +66,6 @@ export default function Profile() {
             </div>
           
           </div>
-
-            {/* <div className=" w-100" >
-            <div className="d-flex justify-content-center align-items-center flex-column">
-                  <div className="text-center w-25 my-5">
-                    <img src={Logo} alt="" className="w-50 border-radius: 50%;" />
-                  </div>
-            <table class="table table-dark text-center" style={{width: "50vw"}}>
-              <tbody>
-                <tr className="bg-brimary">
-                  <th class="bg-danger col-6" scope="row">Name</th>
-                  <td class="bg-primary col-6">{name}</td>
-                </tr>
-                <tr><th class="bg-danger col-6" scope="row">Username</th>
-                  <td class="bg-primary col-6">{username}</td></tr>
-                <tr class="bg-success">
-                  <th class="bg-danger col-6" scope="row">Email</th>
-                  <td class="bg-primary col-6">{email}</td>
-                </tr>
-                <tr><th class="bg-danger col-6" scope="row">DOB</th>
-                  <td class="bg-primary col-6">{dob}</td></tr>
-                
-                <tr><th class="bg-danger col-6" scope="row">Favorite team</th>
-                  <td class="bg-primary col-6 ">{team}</td></tr>
-                  <tr><th  class="bg-danger col-6" scope="row">Score</th>
-                  <td class="bg-primary col-6">{total_score}</td>
-                </tr>
-                
-                
-                
-                
-                  
-                  
-
-              </tbody>
-            </table>
-            </div>
-          </div> */}
           </div>
         </div>
       </div>

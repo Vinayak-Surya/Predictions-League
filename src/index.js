@@ -18,7 +18,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.render(
-  // <MatchDayData>
+  <MatchDayData>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} exact />
@@ -41,7 +41,7 @@ ReactDOM.render(
         />
       </Routes>
     </BrowserRouter>
-  // </MatchDayData>,
+  </MatchDayData>
   ,document.getElementById("root")
 );
 

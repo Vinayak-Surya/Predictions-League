@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../Components/Navbar";
 import UserPredictionRow from "../Components/UserPredictionRow";
 import axios from "axios";
@@ -6,10 +6,8 @@ import axios from "axios";
 export default function UserPredictions() {
 
     const [gameWeek, setGameWeek] = useState([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38])
-
     const [selectedGW, setSelectedGW] = useState();
     const [username, setUsername] = useState();
-
     const [userPredictions, setUserPredictions] = useState([]);
 
     useEffect(() => {
@@ -75,7 +73,6 @@ export default function UserPredictions() {
                                     </div>
                                 </div>
                             </div>
-                        {/* <div className=" d-flex justify-content-center mt-3"><button type="submit" className="btn btn-success" >Previous Predictions</button></div> */}
                     </div>
                 </div>
                 </div>

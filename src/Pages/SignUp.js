@@ -48,11 +48,6 @@ export default function Login() {
             closeOnClick: true,
             pauseOnHover: true,
           });
-          // window.location.reload(false);
-          // const interval = setInterval(() => {
-          //   navigate('/login');
-          // }, 2500);
-          // clearInterval(interval);
         }
       })
   }

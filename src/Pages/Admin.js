@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Navbar from "../Components/Navbar";
+import { MatchDayContext } from "../MatchDayContext";
 
 export default function Login() {
 
     let values;
-    const [matchday, setMatchday] = useState(22)
+    // const [matchday, setMatchday] = useState(22)
+    const { matchday, setMatchday } = useContext(MatchDayContext);
     const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
@@ -72,9 +74,13 @@ export default function Login() {
                         console.log(data);
                     })
             })
+        if (matchday != 38) {
+            setMatchday(matchday + 1);
+        }
     }
 
     const calculatePoints = () => {
+
         axios
             .post("/api/calculatePoints")
             .then((data) => {

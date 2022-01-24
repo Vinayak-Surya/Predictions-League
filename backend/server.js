@@ -11,8 +11,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.use(express.json({limit: '150mb'}));
-app.use(express.urlencoded({limit: '150mb'}));
+app.use(express.json({ limit: '150mb' }));
+app.use(express.urlencoded({ limit: '150mb' }));
 app.use(cors());
 
 var pool = mysql.createPool({
@@ -53,7 +53,7 @@ app.post("/addUser", function (req, res) {
         if (error) {
           console.log(error);
           // res.status(500).send(error);
-          res.status(500).send({errorMessage: "Username already exists!"});
+          res.status(500).send({ errorMessage: "Username already exists!" });
         }
         res.send(results);
         //res.send({ message: "Succesfully Added to DB" })
@@ -84,10 +84,10 @@ app.post("/api/login", (req, res) => {
             res.status(500).send(error);
           }
           console.log(results);
-          if(results.length != 0) {
-            res.send({auth: true});
+          if (results.length != 0) {
+            res.send({ auth: true });
           } else {
-            res.send({auth: false});
+            res.send({ auth: false });
           }
         }
       );
@@ -128,7 +128,7 @@ app.post("/api/fixtures", (req, res) => {
       res.status(500).send("DB connection error");
     }
     else {
-      console.log(req.body.matches,req.body.matches.length);
+      console.log(req.body.matches, req.body.matches.length);
       connection.query(
         "Insert into results (gameweek, match_id, home_team, away_team, h_goals, a_goals, goal_diff, status) values ?",
         [req.body.matches],
@@ -144,18 +144,18 @@ app.post("/api/fixtures", (req, res) => {
       )
       //res.send(200).json({matchday:c})
     }
+  })
 })
-})  
 
 app.post("/api/updateScores", (req, res) => {
   pool.getConnection((err, connection) => {
-    if(err) {
+    if (err) {
       console.log("Connection issues");
       res.status(500).send("DB connection error");
     }
     else {
       console.log(req.body.matches, req.body.matches.length);
-      for(let i = 0; i < req.body.matches.length; i++) {
+      for (let i = 0; i < req.body.matches.length; i++) {
         connection.query(
           "update results set h_goals=?, a_goals=?, goal_diff=? , status=? where match_id=?",
           [
@@ -165,8 +165,8 @@ app.post("/api/updateScores", (req, res) => {
             req.body.matches[i].status,
             req.body.matches[i].id,
           ],
-          (error, results, fields) => { 
-          // connection.release();
+          (error, results, fields) => {
+            // connection.release();
             if (error) {
               console.log(error);
               res.status(500).send(error);
@@ -183,7 +183,7 @@ app.post("/api/updateScores", (req, res) => {
 
 app.get("/api/getFixtures", (req, res) => {
   pool.getConnection((err, connection) => {
-    if(err) {
+    if (err) {
       console.log("Connection issues");
       res.status(500).send("DB connection error");
     }
@@ -215,7 +215,7 @@ app.get("/api/getLeaderboard", (req, res) => {
     else {
       connection.query(
         "SELECT @curRank := @curRank + 1 as rank, username,name,total_score FROM users u, (SELECT @curRank := 0) r where username<>'admin' ORDER BY  total_score desc",
-        
+
         (error, results, fields) => {
           connection.release();
           if (error) {
@@ -281,10 +281,10 @@ app.get("/api/getGameweekScores", (req, res) => {
 
 app.post("/api/addPrediction", (req, res) => {
   pool.getConnection((err, connection) => {
-    if(err) {
+    if (err) {
       console.log("Connection issues");
       res.status(500).send("DB connection error");
-    } 
+    }
     else {
       let val = [
         [
@@ -301,7 +301,7 @@ app.post("/api/addPrediction", (req, res) => {
         [req.body.matchId, req.body.username],
         (err, results, fields) => {
           // console.log(results);
-          if(results.length) {
+          if (results.length) {
             query = "update predictions set pred_home_goals=?, pred_away_goals=?, pred_gd=? where match_id=? and username=?";
             connection.query(
               query,
@@ -344,16 +344,16 @@ app.post("/api/addPrediction", (req, res) => {
 
 function calculateScore(h, a, gd, ph, pa, pgd) {
   let score = 0;
-  if(h === ph && a === pa) {
-    if(Math.abs(gd) > 3) {
+  if (h === ph && a === pa) {
+    if (Math.abs(gd) > 3) {
       score = 10;
     }
     else {
       score = 5;
     }
   }
-  else if(gd === pgd) {
-    if(Math.abs(gd) > 0) {
+  else if (gd === pgd) {
+    if (Math.abs(gd) > 0) {
       score = 3;
     }
     else {
@@ -361,11 +361,11 @@ function calculateScore(h, a, gd, ph, pa, pgd) {
     }
   }
   else {
-    if((h > a && ph > pa) || (h < a && ph < pa)) {
+    if ((h > a && ph > pa) || (h < a && ph < pa)) {
       score = 2;
     }
     else {
-      score = 0;  
+      score = 0;
     }
   }
   return score;
@@ -379,7 +379,7 @@ app.post("/api/calculatePoints", (req, res) => {
   // inside array get the score in a var and insert into points table with necessary info
   // set all rows to be "calculated" in predictions
   pool.getConnection((err, connection) => {
-    if(err) {
+    if (err) {
       console.log("Connection issues");
       res.status(500).send("DB connection error");
     }
@@ -394,7 +394,7 @@ app.post("/api/calculatePoints", (req, res) => {
           }
           // console.log(results);
           // res.send(results);
-          for(let i = 0; i < results.length; i++) {
+          for (let i = 0; i < results.length; i++) {
             let score = calculateScore(results[i].h_goals, results[i].a_goals, results[i].goal_diff, results[i].pred_home_goals, results[i].pred_away_goals, results[i].pred_gd)
             let val = [
               [
@@ -438,7 +438,7 @@ app.post("/api/calculatePoints", (req, res) => {
               [results[i].gameweek, results[i].username],
               (err, gw, fields) => {
                 // console.log(results);
-                if(gw.length) {
+                if (gw.length) {
                   query = "update gw_total set gw_score=gw_score+? where gameweek=? and username=?";
                   connection.query(
                     query,

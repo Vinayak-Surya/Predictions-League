@@ -12,17 +12,6 @@ export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  // async function postData() {
-  //   const response = await fetch("http://localhost:7800/api/login", {
-  //     method: "POST",
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({ username, password })
-  //   })
-  //   return response.json();
-  // }
-
   const handleSubmit = (e) => {
     console.log("button clicked")
     e.preventDefault();

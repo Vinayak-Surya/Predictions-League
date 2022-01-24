@@ -10,15 +10,13 @@ import Video2 from "../Images/Soccer-intro.mp4"
 export default function Home() {
   return (
     <div>
-      
+
       <Navbar />
       <div>
         <div id="carouselExampleCaptions" className="carousel slide carousel-fade" data-bs-ride="carousel">
           <div className="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            {/* <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button> */}
           </div>
           <div className="carousel-inner">
             <div className="carousel-item active" data-bs-interval="13000">
@@ -31,20 +29,6 @@ export default function Home() {
                 <source src={Video2} id="vid2" type="video/mp4" />
               </video>
             </div>
-            {/* <div className="carousel-item" data-bs-interval="13000">
-              <img src={RealMadrid} className="d-block" alt="..." />
-              <div className="carousel-caption d-md-block">
-                <h3>Real Madrid</h3>
-                <h4>Real Madrid winning LaLiga</h4>
-              </div>
-            </div>
-            <div className="carousel-item" data-bs-interval="13000">
-              <img src={Barca} className="d-block" alt="..." />
-              <div className="carousel-caption d-md-block">
-                <h3>Barcelona</h3>
-                <h4>Barcelona winning LaLiga</h4>
-              </div>
-            </div> */}
           </div>
           <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -65,29 +49,15 @@ export default function Home() {
           <div className="row">
             <div className="column-lg-6 col-md-6 col-12 mb-2">
               <div id="carouselExampleCaptions1" className="carousel slide carousel-fade" data-bs-ride="carousel">
-                {/* <div className="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div> */}
                 <div className="carousel-inner">
                   <div className="carousel-item active" data-bs-interval="10000">
                     <img src={RealMadrid} className="d-block" alt="..." />
-                    {/* <div className="carousel-caption d-md-block">
-                  <p>Real Madrid</p>
-                </div> */}
                   </div>
                   <div className="carousel-item" data-bs-interval="10000">
                     <img src={Barca} className="d-block" alt="..." />
-                    {/* <div className="carousel-caption d-md-block">
-                  <p>Barcelona</p>
-                </div>  */}
                   </div>
                   <div className="carousel-item" data-bs-interval="10000">
                     <img src={Atletico} className="d-block" alt="..." />
-                    {/* <div className="carousel-caption">
-                  <p>Atletico Madrid</p>
-                </div> */}
                   </div>
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide="prev">
@@ -107,9 +77,9 @@ export default function Home() {
         </div>
       </div>
       <footer className="mt-5">
-        <div className="text-center p-3" style={{backgroundColor: "rgba(0, 0, 0, 0.2)"}}>
-       Copyright &copy; KSV
-          
+        <div className="text-center p-3" style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}>
+          Copyright &copy; KSV
+
         </div>
       </footer>
     </div>

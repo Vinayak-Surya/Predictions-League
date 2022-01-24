@@ -56,7 +56,7 @@ export default function GameweekTotal() {
                                                 {GW.map((GWrow, idx) => (
                                                     <GWtotal key={idx} gw={GWrow.gameweek} gw_points={GWrow.gw_score} total={GWrow.total_score}></GWtotal>
                                                 ))}
-                                                
+
                                             </tbody>
                                         </table>
                                     </div>

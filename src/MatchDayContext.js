@@ -1,13 +1,13 @@
-import React, { useState, createContext, useEffect } from "react";
+import React, { useState, createContext } from "react";
 
 export const MatchDayContext = createContext();
 
 const MatchDayData = ({ children }) => {
     const [matchday, setMatchday] = useState(22);
     return (
-        <MatchDayContext value={{ matchday, setMatchday }}>
+        <MatchDayContext.Provider value={{ matchday, setMatchday }}>
             {children}
-        </MatchDayContext>
+        </MatchDayContext.Provider>
     );
 }
 
