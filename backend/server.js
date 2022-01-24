@@ -212,7 +212,7 @@ app.post("/api/addPrediction", (req, res) => {
     if(err) {
       console.log("Connection issues");
       res.status(500).send("DB connection error");
-    }
+    } 
     else {
       let val = [
         [
@@ -267,6 +267,31 @@ app.post("/api/addPrediction", (req, res) => {
       )
     }
   })
+})
+
+function calScore(gd_predicted,gd_actual){
+ //write rules logic
+}
+
+app.post("/api/calculatePoints", (req, res) => {
+  // select * from predictions where status = "Not Calculated"  --> view
+  // join with results table using match_id --> view
+  // select * from 2nd view and store as array 
+  // map array and send stuff to calScore function which will return the score
+  // inside array get the score in a var and insert into points table with necessary info
+  // set all rows to be "calculated" in predictions
+})
+
+app.post("/api/calculateGameweekTotal", (req, res) => {
+  // get all the users from points
+  // Map over users and for each user select  sum(score) from points where user=user and gameweek=gw
+  // insert into gw_total
+})
+
+app.post("/api/totalScore", (req, res) => {
+  // get all the users from gw_total
+  // Map over users and for each user select sum(score) from gw_total where user=user
+  // update value in user table
 })
 
 app.listen(port, () => console.log(`Server listening on port ${port}.....`));

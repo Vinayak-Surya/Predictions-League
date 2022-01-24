@@ -58,7 +58,7 @@ export default function Login() {
   }
 
   return (
-    <div id="d1">
+    <div id="d1" style={{height: "100vh"}}>
       <div id="bg">
         <div/*style={{ backdropFilter: "blur(3px)" }}*/ id="d1">
           <Navbar />

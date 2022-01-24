@@ -70,7 +70,8 @@ export default function Login() {
     }
 
     const calculatePoints = () => {
-
+        axios
+            .post("/api/calculatePoints")
     }
 
 
@@ -82,13 +83,13 @@ export default function Login() {
                     <hr className="w-50 mx-auto" />
                 </div><div className="my-5 pt-5 text-center">
                     <div>
-                    <button type="submit" onClick={handlePopulate} className="btn btn-primary w-25 ">Populate fixtures</button>
+                    <button type="submit" onClick={handlePopulate} className="btn btn-primary w-25 " style={{minWidth: "180px"}}>Populate fixtures</button>
                 </div>
                 <div className=" my-4">
-                    <button type="submit" onClick={updateScores} className="btn btn-primary w-25 ">Update Scores</button>
+                    <button type="submit" onClick={updateScores} className="btn btn-primary w-25 " style={{minWidth: "180px"}}>Update Scores</button>
                 </div>
                 <div>
-                <button type="submit" onClick={calculatePoints} className="btn btn-primary w-25">Calculate Points</button>
+                <button type="submit" onClick={calculatePoints} className="btn btn-primary w-25" style={{minWidth: "180px"}}>Calculate Points</button>
                     </div></div>
 
                 </div>

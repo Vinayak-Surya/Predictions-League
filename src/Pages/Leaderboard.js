@@ -8,7 +8,7 @@ import $ from 'jquery';
 export default function Leaderboard() {
     return (
             
-        <div id="d1">
+        <div id="d1" style={{height: "100vh"}}>
             
          
             <div id="bg">

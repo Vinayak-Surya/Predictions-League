@@ -29,7 +29,7 @@ export default function Profile() {
   }, [username])
 
   return (
-    <div>
+    <div style={{height: "100vh"}}>
       <div id="bg">
         <div style={{ height: "100vh" }}>
           <Navbar />

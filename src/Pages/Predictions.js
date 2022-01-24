@@ -27,7 +27,7 @@ export default function Predictions() {
 
     return (
 
-        <div id="d1">
+        <div id="d1" style={{height: "100vh"}}>
             <div id="bg">
                 <div>
                     <Navbar />
