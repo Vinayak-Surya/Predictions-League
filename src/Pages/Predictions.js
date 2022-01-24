@@ -5,7 +5,7 @@ import axios from "axios";
 
 export default function Predictions() {
 
-    const [games, setGames] = useState([]);  
+    const [games, setGames] = useState([]);
 
     // add date to results table, compare user date and date in table to get closest matchday and put a useeffect on load to do this 
     // run below useeffect when matchday gets set
@@ -42,10 +42,12 @@ export default function Predictions() {
                         </section>
                         <div className=" d-flex justify-content-center">
                             <div>
-                                <form style={{width: "850px"}}>
-                                    {games.map((game, idx) => (
-                                        <PredictionBox key={idx} matchId={game.match_id} homeTeam={game.home_team} awayTeam={game.away_team}></PredictionBox>
-                                    ))}
+                                <form style={{ width: "850px" }}>
+                                    <table>
+                                        {games.map((game, idx) => (
+                                            <PredictionBox key={idx} matchId={game.match_id} homeTeam={game.home_team} awayTeam={game.away_team}></PredictionBox>
+                                        ))}
+                                    </table>
                                 </form>
                             </div>
                         </div>
