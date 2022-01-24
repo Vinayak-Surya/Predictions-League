@@ -58,9 +58,9 @@ export default function Login() {
   }
 
   return (
-    <div id="d1" style={{height: "100vh"}}>
+    <div id="d1">
       <div id="bg">
-        <div/*style={{ backdropFilter: "blur(3px)" }}*/ id="d1">
+      
           <Navbar />
           <section className="mt-2 mx-auto text-light">
             <div className="container" id="form1">
@@ -133,7 +133,6 @@ export default function Login() {
               </form>
             </div>
           </section>
-        </div>
       </div>
     </div>
   )

@@ -30,21 +30,21 @@ export default function Navbar() {
                     <div className="collapse navbar-collapse d-md-flex justify-content-end" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto">
                             {isLoggedIn ? 
-                            <div class="d-flex">
+                            <div className="d-flex">
                                 <li className="nav-item active mr-3">
                                     <Link style={{ textDecoration: 'none' }} className="text-light nav-link" to="/predictions">Predictions</Link>
-                                </li>
-                                <li className="nav-item mr-3">
-                                    <Link style={{ textDecoration: 'none' }} className="text-light nav-link" to="/profile">Profile</Link>
-                                </li>
-                                <li className="nav-item mr-3">
-                                    <Link style={{ textDecoration: 'none' }} className="text-light nav-link" to="/rules">Rules</Link>
                                 </li>
                                 <li className="nav-item mr-3">
                                     <Link style={{ textDecoration: 'none' }} className="text-light nav-link" to="/leaderboard">Leaderboard</Link>
                                 </li>
                                 <li className="nav-item mr-3">
-                                    <Link style={{ textDecoration: 'none' }} className="text-light nav-link" to="/gameweektotal">Gameweek Total</Link>
+                                    <Link style={{ textDecoration: 'none' }} className="text-light nav-link" to="/gameweektotal">Gameweek Scores</Link>
+                                </li>
+                                <li className="nav-item mr-3">
+                                    <Link style={{ textDecoration: 'none' }} className="text-light nav-link" to="/rules">Rules</Link>
+                                </li>
+                                <li className="nav-item mr-3">
+                                    <Link style={{ textDecoration: 'none' }} className="text-light nav-link" to="/profile">Profile</Link>
                                 </li>
                                 <li className="nav-item" onClick={handleLogout}>
                                     <div className="text-light nav-link">Logout</div>

@@ -26,7 +26,7 @@ export default function Home() {
                 <source src={Video} type="video/mp4" />
               </video>
             </div>
-            <div className="carousel-item" data-bs-interval="13000">
+            <div className="carousel-item" data-bs-interval="18000">
               <video className="img-fluid d-block" autoplay="autoplay" loop muted>
                 <source src={Video2} id="vid2" type="video/mp4" />
               </video>

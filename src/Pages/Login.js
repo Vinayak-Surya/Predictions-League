@@ -48,9 +48,8 @@ export default function Login() {
   }
 
   return (
-    <div style={{ height: "100vh" }}>
+    <div style={{height: "100vh"}}>
       <div id="bg">
-        <div style={{ height: "100vh" }}>
           <Navbar />
           <section className="mt-3 pt-3 mx-auto text-light">
             <ToastContainer />
@@ -87,6 +86,5 @@ export default function Login() {
           </section>
         </div>
       </div>
-    </div>
   )
 }

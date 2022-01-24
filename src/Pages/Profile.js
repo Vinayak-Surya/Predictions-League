@@ -29,12 +29,11 @@ export default function Profile() {
   }, [username])
 
   return (
-    <div style={{height: "100vh"}}>
+    <div style={{height:"100vh"}}>
       <div id="bg">
-        <div style={{ height: "100vh" }}>
           <Navbar />
           <div className="container ms-auto d-flex justify-content-center align-items-center mt-5 pt-2">
-          <div className="card align-items-center bg-dark" style={{width: "40vw", borderRadius: "3%"}}>
+          <div className="card align-items-center bg-dark" style={{width: "40vw", minWidth:"350px" ,borderRadius: "3%"}}>
 
             <img src={Logo} className="card-img-top w-25 mt-2" />
 
@@ -107,6 +106,5 @@ export default function Profile() {
           </div>
         </div>
       </div>
-    </div>
   )
 }

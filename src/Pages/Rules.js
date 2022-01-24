@@ -4,8 +4,9 @@ import BG from "../Images/pre.jpg";
 
 export default function Rules() {
     return (
+        <div id="d1">
         <div id="bg">
-            <div style={{ height: "100vh" }}>
+            
                 <Navbar />
                 <section className="text-light">
                     <div className="main my-4">
@@ -15,7 +16,8 @@ export default function Rules() {
                         </div>
                     </div>
                     <div className="text-center max-auto d-flex justify-content-center">
-                        <table className="table text-white w-75" style={{backgroundColor: "#000000", backgroundImage: "linear-gradient(147deg, #000000 0%, #414141 74%) " ,borderTop: "none"}}>
+                        {/* //style={{backgroundColor: "#000000", backgroundImage: "linear-gradient(147deg, #000000 0%, #414141 74%) " ,borderTop: "none"}} */}
+                        <table className="table table-dark text-white w-75 pt-5" >
                             <tr style={{borderTop: "none"}}>
                                 <td>Deadline to predict the scorelines for each gameweek is one hour before the kickoff of the first game of that particular week</td>
                             </tr>

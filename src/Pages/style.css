@@ -77,11 +77,9 @@
 @media (min-width: 576px) {
     #d1{height:100%;}
 }
-
 @media (min-width: 768px) { 
     #d1{height:100vh;}
 }
-
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none;
@@ -135,7 +133,9 @@ input[type=number]::-webkit-outer-spin-button {
 .table-fixed th {
     display: block;
 }
-
+table{
+    border-radius: 30px;
+}
 .table-fixed tbody td,
 .table-fixed tbody th,
 .table-fixed thead > tr > th {
