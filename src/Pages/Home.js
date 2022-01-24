@@ -10,6 +10,7 @@ import Video2 from "../Images/Soccer-intro.mp4"
 export default function Home() {
   return (
     <div>
+      
       <Navbar />
       <div>
         <div id="carouselExampleCaptions" className="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -62,7 +63,7 @@ export default function Home() {
         </div>
         <div className="container">
           <div className="row">
-            <div className="column-lg-6 col-md-6 col-12">
+            <div className="column-lg-6 col-md-6 col-12 mb-2">
               <div id="carouselExampleCaptions1" className="carousel slide carousel-fade" data-bs-ride="carousel">
                 {/* <div className="carousel-indicators">
               <button type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
@@ -107,9 +108,10 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <footer>
-        <div className="text-center">
-          <p>Copyright &copy; KSV</p>
+      <footer className="mt-5">
+        <div className="text-center p-3" style={{backgroundColor: "rgba(0, 0, 0, 0.2)"}}>
+       Copyright &copy; KSV
+          
         </div>
       </footer>
     </div>

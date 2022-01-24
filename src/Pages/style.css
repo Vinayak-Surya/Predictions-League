@@ -1,4 +1,5 @@
 *{
+    font-family: 'Helvetica';
     margin:0;
     padding:0;
     box-sizing: border-box;
@@ -88,6 +89,7 @@ input[type=number]::-webkit-outer-spin-button {
     appearance: none;
     margin: 0; 
 }
+
 /* @media (min-width: 992px) { 
     #d1{height:100vh;}
 } */
@@ -119,3 +121,30 @@ input[type=number]::-webkit-outer-spin-button {
     background-color: #00b3db;
     border-color: #000; 
 } */
+
+.table-fixed tbody {
+    height: 300px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
+    display: block;
+}
+
+.table-fixed tbody td,
+.table-fixed tbody th,
+.table-fixed thead > tr > th {
+    float: left;
+    position: relative;
+
+    /* &::after {
+        content: '';
+        clear: both;
+        display: block;
+    } */
+}

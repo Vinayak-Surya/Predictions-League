@@ -147,6 +147,40 @@ app.post("/api/fixtures", (req, res) => {
 })
 })  
 
+app.post("/api/updateScores", (req, res) => {
+  pool.getConnection((err, connection) => {
+    if(err) {
+      console.log("Connection issues");
+      res.status(500).send("DB connection error");
+    }
+    else {
+      console.log(req.body.matches, req.body.matches.length);
+      for(let i = 0; i < req.body.matches.length; i++) {
+        connection.query(
+          "update results set h_goals=?, a_goals=?, goal_diff=? , status=? where match_id=?",
+          [
+            req.body.matches[i].score.fullTime.homeTeam,
+            req.body.matches[i].score.fullTime.awayTeam,
+            req.body.matches[i].score.fullTime.homeTeam - req.body.matches[i].score.fullTime.awayTeam,
+            req.body.matches[i].status,
+            req.body.matches[i].id,
+          ],
+          (error, results, fields) => { 
+          // connection.release();
+            if (error) {
+              console.log(error);
+              res.status(500).send(error);
+            }
+            console.log(results);
+            // res.send(results);
+          }
+        )
+      }
+    }
+    connection.release();
+  })
+})
+
 app.get("/api/getFixtures", (req, res) => {
   pool.getConnection((err, connection) => {
     if(err) {

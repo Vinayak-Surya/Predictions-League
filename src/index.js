@@ -9,6 +9,7 @@ import Admin from "./Pages/Admin";
 import Profile from "./Pages/Profile";
 import Predictions from "./Pages/Predictions";
 import SignUp from "./Pages/SignUp";
+import Leaderboard from "./Pages/Leaderboard";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import 'react-toastify/dist/ReactToastify.css';
@@ -23,6 +24,7 @@ ReactDOM.render(
       <Route path="predictions" element={<Predictions />} exact />
       <Route path="signup" element={<SignUp />} exact />
       <Route path="admin" element={<Admin />} exact />
+      <Route path="leaderboard" element={<Leaderboard />} exact />
       <Route
         path="*"
         element={
