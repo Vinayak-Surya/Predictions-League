@@ -22,12 +22,12 @@ export default function Home() {
           </div>
           <div className="carousel-inner">
             <div className="carousel-item active" data-bs-interval="13000">
-              <video className="img-fluid d-block" autoplay="autoplay" loop muted>
+              <video className="img-fluid d-block" autoPlay="autoplay" loop muted>
                 <source src={Video} type="video/mp4" />
               </video>
             </div>
             <div className="carousel-item" data-bs-interval="18000">
-              <video className="img-fluid d-block" autoplay="autoplay" loop muted>
+              <video className="img-fluid d-block" autoPlay="autoplay" loop muted>
                 <source src={Video2} id="vid2" type="video/mp4" />
               </video>
             </div>
@@ -101,9 +101,7 @@ export default function Home() {
               </div>
             </div>
             <div className="column-lg-6 col-md-6 col-12 d-flex justify-content-center align-items-center">
-              <h4>Predicitions League is a live  virtual gaming platform based on the Campeonato Nacional de Liga de Primera División of Spain, commonly known as the La Liga.
-                Participants predicts the results of actual games being played in the LaLiga and in return get points based on the accuracy of their predictions.
-                Users can compare their scores with players from accross the globe and get to know their global standings or wish to form leagues where they can compete among themselves.</h4>
+              <h4>Predicitions League is a live virtual gaming platform based on the Campeonato Nacional de Liga de Primera División of Spain, commonly known as the La Liga. Participants predicts the results of actual games being played in the LaLiga and in return get points based on the accuracy of their predictions. Users can compare their scores with players from accross the globe and get to know their global standings or wish to form leagues where they can compete among themselves.</h4>
             </div>
           </div>
         </div>

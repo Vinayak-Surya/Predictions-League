@@ -206,6 +206,78 @@ app.get("/api/getFixtures", (req, res) => {
     }
   })
 })
+app.get("/api/getLeaderboard", (req, res) => {
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.log("Connection issues");
+      res.status(500).send("DB connection error");
+    }
+    else {
+      connection.query(
+        "SELECT @curRank := @curRank + 1 as rank, username,name,total_score FROM users u, (SELECT @curRank := 0) r where username<>'admin' ORDER BY  total_score desc",
+        
+        (error, results, fields) => {
+          connection.release();
+          if (error) {
+            console.log(error);
+            res.status(500).send(error);
+          }
+          // console.log(results);
+          res.send(results);
+        }
+      )
+    }
+  })
+})
+
+app.get("/api/getUserPredictions", (req, res) => {
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.log("Connection issues");
+      res.status(500).send("DB connection error");
+    }
+    else {
+      console.log(req)
+      connection.query(
+        "select * from predictions as p join results as r where r.match_id=p.match_id and p.username=? and r.gameweek=?",
+        [req.query.username, req.query.gameweek],
+        (error, results, fields) => {
+          connection.release();
+          if (error) {
+            console.log(error);
+            res.status(500).send(error);
+          }
+          console.log(results);
+          res.send(results);
+        }
+      )
+    }
+  })
+})
+
+app.get("/api/getGameweekScores", (req, res) => {
+  pool.getConnection((err, connection) => {
+    if (err) {
+      console.log("Connection issues");
+      res.status(500).send("DB connection error");
+    }
+    else {
+      connection.query(
+        "SELECT gameweek,gw_score FROM gw_total where username=?",
+        [req.query.username],
+        (error, results, fields) => {
+          connection.release();
+          if (error) {
+            console.log(error);
+            res.status(500).send(error);
+          }
+          // console.log(results);
+          res.send(results);
+        }
+      )
+    }
+  })
+})
 
 app.post("/api/addPrediction", (req, res) => {
   pool.getConnection((err, connection) => {
@@ -253,7 +325,7 @@ app.post("/api/addPrediction", (req, res) => {
               query,
               [val],
               (error, results, fields) => {
-                connection.release();
+                // connection.release();
                 if (error) {
                   console.log(error);
                   res.status(500).send(error);
@@ -386,7 +458,7 @@ app.post("/api/calculatePoints", (req, res) => {
                     query,
                     [val2],
                     (error, r, fields) => {
-                      connection.release();
+                      // connection.release();
                       if (error) {
                         console.log(error);
                         res.status(500).send(error);

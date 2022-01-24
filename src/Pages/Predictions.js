@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Components/Navbar";
 import PredictionBox from "../Components/PredictionBox";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Predictions() {
 
     const [games, setGames] = useState([]);
+    const navigate = useNavigate();
 
     // add date to results table, compare user date and date in table to get closest matchday and put a useeffect on load to do this 
     // run below useeffect when matchday gets set
@@ -25,6 +27,10 @@ export default function Predictions() {
             })
     }, []);
 
+    const handleUserPredictions = () =>{
+        navigate("/userpredictions");
+    }
+    
     return (
 
         <div style={{height: "100vh"}} >
@@ -35,7 +41,7 @@ export default function Predictions() {
                         <section>
                             <div className="main my-3">
                                 <div>
-                                    <h1 className="text-center display-3">Prediction</h1>
+                                    <h1 className="text-center display-4">Prediction</h1>
                                     <hr className="w-50 mx-auto" />
                                 </div>
                             </div>
@@ -47,10 +53,13 @@ export default function Predictions() {
                                         {games.map((game, idx) => (
                                             <PredictionBox key={idx} matchId={game.match_id} homeTeam={game.home_team} awayTeam={game.away_team}></PredictionBox>
                                         ))}
+
                                     </table>
                                 </form>
                             </div>
+                            
                         </div>
+                        <div className=" d-flex justify-content-center mt-3"><button type="submit" className="btn btn-success" onClick={handleUserPredictions}>Previous Predictions</button></div>                     
                     </section>
                 </div>
             </div>

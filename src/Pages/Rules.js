@@ -4,7 +4,7 @@ import BG from "../Images/pre.jpg";
 
 export default function Rules() {
     return (
-        <div id="d1">
+        <div style={{height: "100vh"}}>
         <div id="bg">
             
                 <Navbar />
