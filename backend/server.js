@@ -223,14 +223,14 @@ app.post("/api/addPrediction", (req, res) => {
           req.body.username
         ]
       ];
-      let query = "insert into predictions (h_goals, a_goals, goal_diff, match_id, username) values ?";
+      let query = "insert into predictions (pred_home_goals, pred_away_goals, pred_gd, match_id, username) values ?";
       connection.query(
         "select * from predictions where match_id=? and username=?",
         [req.body.matchId, req.body.username],
         (err, results, fields) => {
           // console.log(results);
           if(results.length) {
-            query = "update predictions set h_goals=?, a_goals=?, goal_diff=? where match_id=? and username=?";
+            query = "update predictions set pred_home_goals=?, pred_away_goals=?, pred_gd=? where match_id=? and username=?";
             connection.query(
               query,
               [req.body.homeGoals,
@@ -265,12 +265,38 @@ app.post("/api/addPrediction", (req, res) => {
           }
         }
       )
+      connection.release();
     }
   })
 })
 
-function calScore(gd_predicted,gd_actual){
- //write rules logic
+function calculateScore(h, a, gd, ph, pa, pgd) {
+  let score = 0;
+  if(h === ph && a === pa) {
+    if(Math.abs(gd) > 3) {
+      score = 10;
+    }
+    else {
+      score = 5;
+    }
+  }
+  else if(gd === pgd) {
+    if(Math.abs(gd) > 0) {
+      score = 3;
+    }
+    else {
+      score = 2;
+    }
+  }
+  else {
+    if((h > a && ph > pa) || (h < a && ph < pa)) {
+      score = 2;
+    }
+    else {
+      score = 0;  
+    }
+  }
+  return score;
 }
 
 app.post("/api/calculatePoints", (req, res) => {
@@ -280,18 +306,119 @@ app.post("/api/calculatePoints", (req, res) => {
   // map array and send stuff to calScore function which will return the score
   // inside array get the score in a var and insert into points table with necessary info
   // set all rows to be "calculated" in predictions
+  pool.getConnection((err, connection) => {
+    if(err) {
+      console.log("Connection issues");
+      res.status(500).send("DB connection error");
+    }
+    else {
+      connection.query(          // not calculated predictions are to be calculated
+        "select * from predictions as p join results as r where r.match_id=p.match_id and p.pred_status='Not Calculated' and r.status='FINISHED'",
+        (error, results, fields) => {
+          // connection.release();
+          if (error) {
+            console.log(error);
+            res.status(500).send(error);
+          }
+          // console.log(results);
+          // res.send(results);
+          for(let i = 0; i < results.length; i++) {
+            let score = calculateScore(results[i].h_goals, results[i].a_goals, results[i].goal_diff, results[i].pred_home_goals, results[i].pred_away_goals, results[i].pred_gd)
+            let val = [
+              [
+                results[i].gameweek, results[i].match_id, results[i].username, score
+              ],
+            ];
+            connection.query(            // inserting into points table after calc score
+              "insert into points (gameweek, match_id, username, score) values ?",
+              [val],
+              (error, points, fields) => {
+                // connection.release();
+                if (error) {
+                  console.log(error);
+                  res.status(500).send(error);
+                }
+                console.log(points);
+                // res.send(points);
+              }
+            )
+
+            connection.query(           // updating status of the prediction to calculated
+              "update predictions set pred_status='Calculated' where match_id=? and username=?",
+              [results[i].match_id, results[i].username],
+              (error, pred, fields) => {
+                // connection.release();
+                if (error) {
+                  console.log(error);
+                  res.status(500).send(error);
+                }
+                console.log(pred);
+                // res.send(points);
+              }
+            )
+
+            let query = "insert into gw_total (gameweek, username, gw_score) values ?";
+            let val2 = [
+              [results[i].gameweek, results[i].username, score],
+            ]
+            connection.query(        // update or insert into gw_total
+              "select * from gw_total where gameweek=? and username=?",
+              [results[i].gameweek, results[i].username],
+              (err, gw, fields) => {
+                // console.log(results);
+                if(gw.length) {
+                  query = "update gw_total set gw_score=gw_score+? where gameweek=? and username=?";
+                  connection.query(
+                    query,
+                    [score, results[i].gameweek, results[i].username],
+                    (error, r, fields) => {
+                      if (error) {
+                        console.log(error);
+                        res.status(500).send(error);
+                      }
+                      console.log(r);
+                      // res.send(r);
+                    }
+                  )
+                }
+                else {
+                  connection.query(
+                    query,
+                    [val2],
+                    (error, r, fields) => {
+                      connection.release();
+                      if (error) {
+                        console.log(error);
+                        res.status(500).send(error);
+                      }
+                      console.log(r);
+                      // res.send(r);
+                    }
+                  )
+                }
+              }
+            )
+
+            connection.query(           // update score (total_score) in the users table 
+              "update users set total_score=total_score+? where username=?",
+              [score, results[i].username],
+              (error, totalPoints, fields) => {
+                // connection.release();
+                if (error) {
+                  console.log(error);
+                  res.status(500).send(error);
+                }
+                console.log(totalPoints);
+                // res.send(totalPoints);
+              }
+            )
+          }
+        }
+      )
+      connection.release();
+    }
+  })
 })
 
-app.post("/api/calculateGameweekTotal", (req, res) => {
-  // get all the users from points
-  // Map over users and for each user select  sum(score) from points where user=user and gameweek=gw
-  // insert into gw_total
-})
-
-app.post("/api/totalScore", (req, res) => {
-  // get all the users from gw_total
-  // Map over users and for each user select sum(score) from gw_total where user=user
-  // update value in user table
-})
 
 app.listen(port, () => console.log(`Server listening on port ${port}.....`));

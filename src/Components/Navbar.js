@@ -15,6 +15,7 @@ export default function Navbar() {
 
     const handleLogout = () => {
         sessionStorage.removeItem("userName");
+        setIsLoggedIn(false);
         navigate("/login");
     }
 
@@ -38,6 +39,12 @@ export default function Navbar() {
                                 </li>
                                 <li className="nav-item mr-3">
                                     <Link style={{ textDecoration: 'none' }} className="text-light nav-link" to="/rules">Rules</Link>
+                                </li>
+                                <li className="nav-item mr-3">
+                                    <Link style={{ textDecoration: 'none' }} className="text-light nav-link" to="/leaderboard">Leaderboard</Link>
+                                </li>
+                                <li className="nav-item mr-3">
+                                    <Link style={{ textDecoration: 'none' }} className="text-light nav-link" to="/gameweektotal">Gameweek Total</Link>
                                 </li>
                                 <li className="nav-item" onClick={handleLogout}>
                                     <div className="text-light nav-link">Logout</div>

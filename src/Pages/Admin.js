@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Navbar from "../Components/Navbar";
 
 export default function Login() {
 
     let values;
-    const [matchday,setMatchday] = useState(22)
+    const [matchday, setMatchday] = useState(22)
+    const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
         values = [];
+        if(sessionStorage.getItem("userName") === "admin") {
+            setIsAdmin(true);
+        }
     }, [])
 
     async function getData() {
@@ -72,27 +77,38 @@ export default function Login() {
     const calculatePoints = () => {
         axios
             .post("/api/calculatePoints")
+            .then((data) => {
+                console.log(data);
+            })
     }
 
 
     return (
         <div style={{height: "100vh"}} id="bg">
+            <Navbar />
             <div className="container">
                 <div className="text-light">
-                    <h1 className="text-center display-3">Admin</h1>
+                    <h1 className="text-center display-3" style={{paddingTop: "80px"}}>Admin</h1>
                     <hr className="w-50 mx-auto" />
-                </div><div className="my-5 pt-5 text-center">
-                    <div>
-                    <button type="submit" onClick={handlePopulate} className="btn btn-primary w-25 " style={{minWidth: "180px"}}>Populate fixtures</button>
                 </div>
-                <div className=" my-4">
-                    <button type="submit" onClick={updateScores} className="btn btn-primary w-25 " style={{minWidth: "180px"}}>Update Scores</button>
-                </div>
-                <div>
-                <button type="submit" onClick={calculatePoints} className="btn btn-primary w-25" style={{minWidth: "180px"}}>Calculate Points</button>
-                    </div></div>
 
+
+                {isAdmin ?
+                <div className="my-5 pt-5 text-center">
+                    <div>
+                        <button type="submit" onClick={handlePopulate} className="btn btn-primary w-25 " style={{minWidth: "180px"}}>Populate fixtures</button>
+                    </div>
+                    <div className=" my-4">
+                        <button type="submit" onClick={updateScores} className="btn btn-primary w-25 " style={{minWidth: "180px"}}>Update Scores</button>
+                    </div>
+                    <div>
+                        <button type="submit" onClick={calculatePoints} className="btn btn-primary w-25" style={{minWidth: "180px"}}>Calculate Points</button>
+                    </div>
                 </div>
+                :
+                <p style={{fontSize: "30px", textAlign: "center", color: "white"}}>You don't have access to this page</p>}
+
+            </div>
 
         </div>
     )
