@@ -69,7 +69,7 @@ export default function Login() {
             .then((res) => {
                 console.log(res);
                 axios
-                    .post("/api/updateScores", {matches: res.matches})
+                    .post("http://localhost:7800/api/updateScores", {matches: res.matches})
                     .then((data) => {
                         console.log(data);
                     })
@@ -82,7 +82,7 @@ export default function Login() {
     const calculatePoints = () => {
 
         axios
-            .post("/api/calculatePoints")
+            .post("http://localhost:7800/api/calculatePoints")
             .then((data) => {
                 console.log(data);
             })
