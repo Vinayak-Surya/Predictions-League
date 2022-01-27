@@ -5,12 +5,14 @@ import Logo from "../Images/logo.png";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 export default function Login() {
 
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [cookies, setCookie] = useCookies(['user']);
 
   const handleSubmit = (e) => {
     console.log("button clicked")
@@ -22,6 +24,7 @@ export default function Login() {
         console.log(data.data.auth);
         if(data.data.auth === true) {
           sessionStorage.setItem("userName", username);
+          setCookie('Username', username, { path: '/' });
           navigate("/profile");
         }
         else {
