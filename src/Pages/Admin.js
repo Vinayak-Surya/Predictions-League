@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Navbar from "../Components/Navbar";
-import { MatchDayContext } from "../MatchDayContext";
+import { MatchDayContext } from "../context/MatchDayContext";
 
 export default function Login() {
 

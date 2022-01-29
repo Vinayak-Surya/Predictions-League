@@ -15,7 +15,7 @@ export default function Login() {
   const [username, setUserName] = useState('')
 
   async function postData() {
-    const response = await fetch("http://localhost:7800/addUser", {
+    const response = await fetch("http://localhost:7800/api/addUser", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

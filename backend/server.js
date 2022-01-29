@@ -27,14 +27,12 @@ pool.getConnection(function (err) {
   console.log("Connected!");
 });
 
-app.post("/addUser", function (req, res) {
-  // console.log("---inside post", req.body);
-  pool.getConnection(function (err, connection) {
+app.post("/api/addUser", (req, res) => {
+  pool.getConnection((err, connection) => {
     if (err) {
       console.log("connection issues");
       res.status(500).send("DB connection error");
     }
-    // console.log("-------" + req.body);
     let val = [
       [
         req.body.name,
@@ -52,7 +50,6 @@ app.post("/addUser", function (req, res) {
         connection.release();
         if (error) {
           console.log(error);
-          // res.status(500).send(error);
           res.status(500).send({ errorMessage: "Username already exists!" });
         }
         res.send(results);
@@ -64,16 +61,13 @@ app.post("/addUser", function (req, res) {
 
 app.post("/api/login", (req, res) => {
   pool.getConnection((err, connection) => {
-    // console.log("inside api login")
     if (err) {
       console.log("connection issues");
       res.status(500).send("DB connection error");
     }
     else {
-      // console.log(req.body);
       let username = req.body.username;
       let password = req.body.password;
-      // console.log(username, '+', password);
       connection.query(
         "SELECT * from users where username=? and password=?",
         [username, password],
@@ -83,7 +77,6 @@ app.post("/api/login", (req, res) => {
             console.log(error);
             res.status(500).send(error);
           }
-          // console.log(results);
           if (results.length != 0) {
             res.send({ auth: true });
           } else {
@@ -103,7 +96,6 @@ app.get("/api/profile/:username", (req, res) => {
     }
     else {
       let username = req.params["username"];
-      // console.log(username);
       connection.query(
         "SELECT name, email, dob, total_score, team from users where username=?",
         [username],
@@ -113,7 +105,6 @@ app.get("/api/profile/:username", (req, res) => {
             console.log(error);
             res.status(500).send(error);
           }
-          // console.log(results);
           res.send(results);
         }
       );
@@ -237,7 +228,6 @@ app.get("/api/getUserPredictions", (req, res) => {
       res.status(500).send("DB connection error");
     }
     else {
-      // console.log(req)
       connection.query(
         "select * from predictions as p join results as r where r.match_id=p.match_id and p.username=? and r.gameweek=?",
         [req.query.username, req.query.gameweek],
@@ -372,12 +362,6 @@ function calculateScore(h, a, gd, ph, pa, pgd) {
 }
 
 app.post("/api/calculatePoints", (req, res) => {
-  // select * from predictions where status = "Not Calculated"  --> view
-  // join with results table using match_id --> view
-  // select * from 2nd view and store as array 
-  // map array and send stuff to calScore function which will return the score
-  // inside array get the score in a var and insert into points table with necessary info
-  // set all rows to be "calculated" in predictions
   pool.getConnection((err, connection) => {
     if (err) {
       console.log("Connection issues");
@@ -392,8 +376,6 @@ app.post("/api/calculatePoints", (req, res) => {
             console.log(error);
             res.status(500).send(error);
           }
-          // console.log(results);
-          // res.send(results);
           for (let i = 0; i < results.length; i++) {
             let score = calculateScore(results[i].h_goals, results[i].a_goals, results[i].goal_diff, results[i].pred_home_goals, results[i].pred_away_goals, results[i].pred_gd)
             let val = [
@@ -410,7 +392,6 @@ app.post("/api/calculatePoints", (req, res) => {
                   console.log(error);
                   res.status(500).send(error);
                 }
-                // console.log(points);
                 // res.send(points);
               }
             )
@@ -424,7 +405,6 @@ app.post("/api/calculatePoints", (req, res) => {
                   console.log(error);
                   res.status(500).send(error);
                 }
-                // console.log(pred);
                 // res.send(points);
               }
             )
@@ -438,7 +418,6 @@ app.post("/api/calculatePoints", (req, res) => {
                   console.log(error);
                   res.status(500).send(error);
                 }
-                // console.log(totalPoints);
                 // res.send(totalPoints);
               }
             )
@@ -465,7 +444,6 @@ app.post("/api/calculatePoints", (req, res) => {
                           console.log(error);
                           res.status(500).send(error);
                         }
-                        // console.log(r);
                         // res.send(r);
                       }
                     )
@@ -481,7 +459,6 @@ app.post("/api/calculatePoints", (req, res) => {
                           console.log(error);
                           res.status(500).send(error);
                         }
-                        // console.log(r);
                         // res.send(r);
                       }
                     )

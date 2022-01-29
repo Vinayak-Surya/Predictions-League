@@ -3,7 +3,7 @@ import Navbar from "../Components/Navbar";
 import PredictionBox from "../Components/PredictionBox";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { MatchDayContext } from "../MatchDayContext";
+import { MatchDayContext } from "../context/MatchDayContext";
 
 export default function Predictions() {
 

@@ -1,6 +1,5 @@
 import React from "react";
 import "./style.css";
-import { Link } from "react-router-dom";
 import RealMadrid from "../Images/f.jpg";
 import Barca from "../Images/s.jpeg";
 import Atletico from "../Images/ts.jpg";
