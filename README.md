@@ -14,5 +14,5 @@ This is a web-based platform where users can predict match outcomes, earn points
 ## 🛠️ Tech Stack
 - **Frontend:** React.js
 - **Backend:** Node.js, Express.js
-- **Database:** SQL (MySQL/PostgreSQL)
+- **Database:** SQL
 - **APIs:** REST APIs for data communication
